@@ -23,7 +23,7 @@ unique items or characters that need to be represented as tokens. Additionally, 
 transactions, which means that multiple tokens can be transferred in a single transaction, reducing gas costs 
 and improving the overall user experience. Our integration uses a single ERC1155 smart contract to represent 
 all game tokens, making it more efficient and cost-effective for both developers and users.  
-Source: [DefaultERC1155.sol](https://github.com/beamable/theta-example-unity/blob/main/Packages/com.beamable.theta/Runtime/ThetaFederation/Solidity/Contracts/DefaultERC1155.sol)  
+Source: [Default Smart Contract](https://github.com/beamable/theta-example-unity/blob/main/Packages/com.beamable.theta/Runtime/ThetaFederation/Solidity/Contracts/GameToken.sol)  
 
 ## Solidity
 We are using the **solc** Solidity compiler wrapped inside of the integration microservice to compile the smart contract
@@ -44,7 +44,7 @@ and add a part of this repository as an external package.
 In the Unity Package Manager, [add a package via git-link](https://docs.unity3d.com/Manual/upm-ui-giturl.html).
 for `com.beamable.theta` and use the following git-link.
 ```shell
-https://github.com/beamable/theta-example-unity.git?path=/Packages/com.beamable.theta
+https://github.com/beamable/theta-example-unity.git?path=/Packages/com.beamable.theta#0.0.1
 ```
 
 Note: the end of the link includes the version number. You view the available versions by looking
