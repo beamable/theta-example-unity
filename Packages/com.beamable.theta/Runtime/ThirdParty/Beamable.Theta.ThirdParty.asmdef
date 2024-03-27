@@ -1,0 +1,20 @@
+{
+  "name": "Beamable.Theta.ThirdParty",
+  "references": [
+    "Unity.Beamable",
+    "Unity.Beamable.Runtime.Common",
+    "Unity.Beamable.Server.Runtime",
+    "Unity.Beamable.Server.Runtime.Common",
+    "Unity.Beamable.Server.Runtime.Mocks",
+    "Unity.Beamable.Theta.Common",
+    "Beamable.Theta.Client",
+    "Unity.ResourceManager",
+    "Unity.Addressables",
+    "Beamable.Platform",
+    "Beamable.SmallerJSON",
+    "Unity.TextMeshPro",
+    "endel.nativewebsocket",
+    "RotaryHeart"
+  ],
+  "autoReferenced": true
+}

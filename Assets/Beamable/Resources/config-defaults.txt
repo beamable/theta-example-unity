@@ -1,0 +1,8 @@
+{
+    "cid": "1602703643375620",
+    "alias": "",
+    "pid": "DE_1602703643375623",
+    "platform": "",
+    "socket": "",
+    "containerPrefix": ""
+}

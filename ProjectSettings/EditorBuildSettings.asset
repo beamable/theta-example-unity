@@ -1,0 +1,12 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1045 &1
+EditorBuildSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Scenes:
+  - enabled: 1
+    path: Packages/com.beamable.theta/Samples/ThetaExamples/Scenes/SampleScene.unity
+    guid: a52b320b79c446aba40af9b1cdbcffb9
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: ae55c6739e8a5db4cb1404c11c65f67d, type: 2}
