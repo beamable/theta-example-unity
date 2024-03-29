@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Beamable.Common.Api.Inventory;
-using Beamable.Common.Content;
-using Beamable.Microservices.ThetaFederation.Features.Minting.Json;
 using Newtonsoft.Json;
 
 namespace Beamable.Microservices.ThetaFederation.Features.Minting
@@ -13,9 +11,6 @@ namespace Beamable.Microservices.ThetaFederation.Features.Minting
     {
         public NftExternalMetadata(Dictionary<string, string> properties)
         {
-            SpecialProperties = new Dictionary<string, object>();
-            Properties = new Dictionary<string, string>();
-
             foreach (var property in properties)
                 if (property.Key.StartsWith("$"))
                     SpecialProperties.Add(property.Key.TrimStart('$'), property.Value);
@@ -24,10 +19,10 @@ namespace Beamable.Microservices.ThetaFederation.Features.Minting
         }
 
         [JsonExtensionData]
-        public Dictionary<string, object> SpecialProperties { get; }
+        public Dictionary<string, object> SpecialProperties { get; set; } = new ();
 
         [JsonProperty("properties")]
-        private Dictionary<string, string> Properties { get; }
+        public Dictionary<string, string> Properties { get; set; } = new ();
 
         public Dictionary<string, string> GetProperties()
         {

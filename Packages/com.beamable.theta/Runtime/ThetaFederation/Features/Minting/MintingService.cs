@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Beamable.Common;
-using Beamable.Content;
 using Beamable.Microservices.ThetaFederation.Features.Contracts;
 using Beamable.Microservices.ThetaFederation.Features.Contracts.Functions.Minting.Models;
-using Beamable.Microservices.ThetaFederation.Features.Minting.Exceptions;
 using Beamable.Microservices.ThetaFederation.Features.Minting.Storage;
 using Beamable.Microservices.ThetaFederation.Features.Minting.Storage.Models;
 
@@ -15,40 +12,17 @@ namespace Beamable.Microservices.ThetaFederation.Features.Minting
     public class MintingService : IService
 {
 	private readonly ContractProxy _contractProxy;
-	private readonly ContentService _contentService;
 	private readonly CounterCollection _counterCollection;
 	private readonly MetadataService _metadataService;
 	private readonly MintCollection _mintCollection;
 
-	public MintingService(MetadataService metadataService, MintCollection mintCollection, CounterCollection counterCollection, ContractProxy contractProxy, ContentService contentService)
+	public MintingService(MetadataService metadataService, MintCollection mintCollection, CounterCollection counterCollection, ContractProxy contractProxy)
 	{
 		_metadataService = metadataService;
 		_mintCollection = mintCollection;
 		_counterCollection = counterCollection;
 		_contractProxy = contractProxy;
-		_contentService = contentService;
 	}
-
-	public async Task EnsureTokenIsAvatar(uint tokenId)
-	{
-		var mint = await _mintCollection.GetTokenMint(ContractService.DefaultContractName, tokenId);
-
-		if (mint is null)
-		{
-			throw new InvalidRequestException("Can't find token");
-		}
-	}
-
-	public async Task<bool> DidAccountReceiveToken(string accountAddress, string contentId)
-	{
-		return await _mintCollection.DidAccountReceiveToken(accountAddress, contentId);
-	}
-
-	public async Task SaveMetadata(UpdateMetadataRequest request)
-	{
-		await _mintCollection.SaveMetadata(request);
-	}
-
 
 	public async Task Mint(string toAddress, IList<MintRequest> requests)
 	{
@@ -88,7 +62,8 @@ namespace Beamable.Microservices.ThetaFederation.Features.Minting
 				ContractName = ContractService.DefaultContractName,
 				TokenId = tokenId,
 				Metadata = metadata,
-				InitialOwnerAddress = toAddress
+				InitialOwnerAddress = toAddress,
+				IsNft = request.IsNft
 			});
 			BeamableLogger.Log("Generated mint: {@mint}", new
 			{
@@ -109,7 +84,25 @@ namespace Beamable.Microservices.ThetaFederation.Features.Minting
 
 		var transactionHash = await _contractProxy.BatchMint(functionMessage);
 		mints.ForEach(x => x.TransactionHash = transactionHash);
-		await _mintCollection.InsertMints(mints);
+		await InsertMints(mints);
+	}
+
+	private async Task InsertMints(IEnumerable<Mint> mints)
+	{
+		var mintsGrouped = mints.GroupBy(m => m.IsNft)
+			.ToDictionary(g => g.Key, g => g.ToList());
+
+		if (mintsGrouped.GetValueOrDefault(true) is not null)
+			await _mintCollection.InsertMints(mintsGrouped.GetValueOrDefault(true));
+
+		foreach (var mint in mintsGrouped.GetValueOrDefault(false, new List<Mint>()))
+		{
+			var existingMint = await _mintCollection.GetTokenMint(mint.ContractName, mint.TokenId);
+			if (existingMint is null)
+			{
+				await _mintCollection.TryInsertMint(mint);
+			}
+		}
 	}
 }
 

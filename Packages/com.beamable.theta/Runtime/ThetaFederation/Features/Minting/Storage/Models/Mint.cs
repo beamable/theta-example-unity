@@ -9,5 +9,8 @@ namespace Beamable.Microservices.ThetaFederation.Features.Minting.Storage.Models
         public string TransactionHash { get; set; } = null!;
         public NftExternalMetadata Metadata { get; set; } = null!;
         public string InitialOwnerAddress { get; set; } = null!;
+
+        [BsonIgnore]
+        public bool IsNft { get; set; }
     }
 }

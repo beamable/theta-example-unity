@@ -52,9 +52,9 @@
         "Microsoft.Extensions.DependencyInjection.Abstractions.dll",
         "Microsoft.Extensions.DependencyInjection.dll",
         "Microsoft.Extensions.Logging.Abstractions.dll",
-        "Microsoft.Extensions.Logging.dll",
         "Microsoft.Extensions.Options.dll",
-        "Microsoft.Extensions.Primitives.dll"
+        "Microsoft.Extensions.Primitives.dll",
+        "Microsoft.Bcl.AsyncInterfaces.dll"
     ],
     "autoReferenced": false,
     "defineConstraints": [],

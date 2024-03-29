@@ -214,7 +214,7 @@ namespace Beamable.Microservices.ThetaFederation.Features.EthRpc
 					Error = ex.Message
 				});
 
-				if (ex.Message.StartsWith("nonce too low"))
+				if (ex.Message.StartsWith("-32000: ValidateInputAdvanced"))
 				{
 					throw new NonceTooLowException();
 				}

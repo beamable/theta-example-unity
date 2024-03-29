@@ -49,7 +49,7 @@ MonoBehaviour:
     LocalInitPass: beamable
   - StorageName: ThetaStorage
     StorageType: mongov1
-    Enabled: 0
+    Enabled: 1
     Archived: 0
     TemplateId: small
     LocalDataPort: 12101
@@ -102,14 +102,17 @@ MonoBehaviour:
       - System.Buffers.dll
       - Microsoft.Extensions.Caching.Abstractions.dll
       - Microsoft.Extensions.Caching.Memory.dll
-      - Microsoft.Extensions.Options.dll
+      - Microsoft.Extensions.Configuration.Abstractions.dll
       - Microsoft.Extensions.DependencyInjection.Abstractions.dll
+      - Microsoft.Extensions.DependencyInjection.dll
       - Microsoft.Extensions.Logging.Abstractions.dll
+      - Microsoft.Extensions.Options.dll
       - Microsoft.Extensions.Primitives.dll
+      - Microsoft.Bcl.AsyncInterfaces.dll
       Location: Packages/com.beamable.theta/Runtime/ThetaFederation/Beamable.Microservice.ThetaFederation.asmdef
       IncludePlatforms: []
       AutoReferenced: 0
-    Checksum: E7F7D872385E9C5A1DB2B20DBB26709A
+    Checksum: D8572B62EFA914F4D2C72BEA25A212BE
   - ServiceName: ThetaStorage
     CodeClass: 2
     CodeDirectory: Packages\com.beamable.theta\Runtime\StorageObjects\ThetaStorage
@@ -291,14 +294,17 @@ MonoBehaviour:
       - System.Buffers.dll
       - Microsoft.Extensions.Caching.Abstractions.dll
       - Microsoft.Extensions.Caching.Memory.dll
-      - Microsoft.Extensions.Options.dll
+      - Microsoft.Extensions.Configuration.Abstractions.dll
       - Microsoft.Extensions.DependencyInjection.Abstractions.dll
+      - Microsoft.Extensions.DependencyInjection.dll
       - Microsoft.Extensions.Logging.Abstractions.dll
+      - Microsoft.Extensions.Options.dll
       - Microsoft.Extensions.Primitives.dll
+      - Microsoft.Bcl.AsyncInterfaces.dll
       Location: Packages/com.beamable.theta/Runtime/ThetaFederation/Beamable.Microservice.ThetaFederation.asmdef
       IncludePlatforms: []
       AutoReferenced: 0
-    Checksum: E7F7D872385E9C5A1DB2B20DBB26709A
+    Checksum: D8572B62EFA914F4D2C72BEA25A212BE
   - ServiceName: Unity.Beamable.Theta.Common
     CodeClass: 3
     CodeDirectory: Packages\com.beamable.theta\Runtime\Common
