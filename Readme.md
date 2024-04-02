@@ -127,17 +127,17 @@ You can override the values using the realm configuration.
 
 | **Namespace**      | **Key**                       | **Default value** | **Description**                                        |
 |--------------------|-------------------------------|-------------------|--------------------------------------------------------|
-| federation_theta   | RPCEndpoint                   |                   | Cluster RPC API URI                                    |
-| federation_theta   | AllowManagedAccounts          | true              | Allow custodial wallets for players                    |
-| federation_theta   | AuthenticationChallengeTtlSec | 600               | Authentication challenge TTL                           |
-| federation_theta   | ReceiptPoolIntervalMs         | 200               | Pooling interval when fetching a transaction receipt   |
-| federation_theta   | TransactionRetries            | 10                | Failed transaction retry count                         |
-| federation_theta   | MaximumGas                    | 2_000_000         | Max transaction gas amount                             |
-| federation_theta   | GasPriceCacheTtlSec           | 3                 | Cache time for previous transaction gas amount         |
-| federation_theta   | GasExtraPercent               | 0                 | Increase transaction gas amount                        |
-| federation_theta   | CollectionName                |                   | Collection name                                        |
-| federation_theta   | CollectionDescription         |                   | Collection description                                 |
-| federation_theta   | CollectionImage               |                   | Collection image URL                                   |
-| federation_theta   | CollectionLink                |                   | Collection external link                               |
+| theta_federation   | RPCEndpoint                   |                   | Cluster RPC API URI                                    |
+| theta_federation   | AllowManagedAccounts          | true              | Allow custodial wallets for players                    |
+| theta_federation   | AuthenticationChallengeTtlSec | 600               | Authentication challenge TTL                           |
+| theta_federation   | ReceiptPoolIntervalMs         | 200               | Pooling interval when fetching a transaction receipt   |
+| theta_federation   | TransactionRetries            | 10                | Failed transaction retry count                         |
+| theta_federation   | MaximumGas                    | 2_000_000         | Max transaction gas amount                             |
+| theta_federation   | GasPriceCacheTtlSec           | 3                 | Cache time for previous transaction gas amount         |
+| theta_federation   | GasExtraPercent               | 0                 | Increase transaction gas amount                        |
+| theta_federation   | CollectionName                |                   | Collection name                                        |
+| theta_federation   | CollectionDescription         |                   | Collection description                                 |
+| theta_federation   | CollectionImage               |                   | Collection image URL                                   |
+| theta_federation   | CollectionLink                |                   | Collection external link                               |
 
 **IMPORTANT:** Configuration is loaded when the service starts. Any configuration change requires a service restart.
