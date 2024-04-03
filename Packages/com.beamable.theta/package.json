@@ -1,6 +1,6 @@
 {
   "name": "com.beamable.theta",
-  "version": "0.0.0",
+  "version": "0.0.3",
   "displayName": "Beamable Theta",
   "description": "Integrate login and inventory with the Theta blockchain.",
   "unity": "2021.3",
@@ -23,9 +23,9 @@
   },
   "samples": [
     {
-      "displayName": "Authentication and inventory example",
+      "displayName": "Demo",
       "description": "Example showing authentication and inventory operations",
-      "path": "Samples~/ThetaExamples"
+      "path": "Samples/ThetaExamples~"
     }
   ]
 }

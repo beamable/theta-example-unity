@@ -12,7 +12,7 @@
         "com.unity.test-framework": "1.1.19",
         "com.unity.test-framework.performance": "2.8.1-preview"
       },
-      "url": "https://nexus.beamable.com/nexus/content/repositories/unity-all"
+      "url": "https://nexus.beamable.com/nexus/content/repositories/unity"
     },
     "com.beamable.server": {
       "version": "1.19.14",
@@ -21,7 +21,7 @@
       "dependencies": {
         "com.beamable": "1.19.14"
       },
-      "url": "https://nexus.beamable.com/nexus/content/repositories/unity-all"
+      "url": "https://nexus.beamable.com/nexus/content/repositories/unity"
     },
     "com.beamable.theta": {
       "version": "file:com.beamable.theta",
@@ -44,11 +44,11 @@
       "dependencies": {}
     },
     "com.unity.addressables": {
-      "version": "1.21.12",
+      "version": "1.21.17",
       "depth": 1,
       "source": "registry",
       "dependencies": {
-        "com.unity.scriptablebuildpipeline": "1.21.5",
+        "com.unity.scriptablebuildpipeline": "1.21.9",
         "com.unity.modules.assetbundle": "1.0.0",
         "com.unity.modules.imageconversion": "1.0.0",
         "com.unity.modules.jsonserialize": "1.0.0",
@@ -120,7 +120,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.scriptablebuildpipeline": {
-      "version": "1.21.5",
+      "version": "1.21.9",
       "depth": 2,
       "source": "registry",
       "dependencies": {},

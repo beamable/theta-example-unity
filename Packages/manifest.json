@@ -49,7 +49,7 @@
   "scopedRegistries": [
     {
       "name": "Beamable",
-      "url": "https://nexus.beamable.com/nexus/content/repositories/unity-all",
+      "url": "https://nexus.beamable.com/nexus/content/repositories/unity",
       "scopes": [
         "com.beamable"
       ]
