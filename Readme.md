@@ -70,6 +70,13 @@ You can enable federation on any item or currency.
 * Initialize Default Contract
   * Call InitializeContract endpoint
   * This compile and publish the smart contract and output its address
+* Import the Sample scene to initialize your wallet
+  * Open the Unity Package Manager
+  * Select the Theta Package and navigate to the "Samples" tab
+  * Import the Demo sample project
+  * Open the Main scene and run it
+  * Click the Initialize wallet button
+  * Confirm in the portal that your player has the wallet
 
 NOTE: First request to the microservice will initiate the compile and deploy procedure for the smart contract. Depending on your RPC endpoint, it may result in a timeout. Be sure to check the microservice logs.
 
