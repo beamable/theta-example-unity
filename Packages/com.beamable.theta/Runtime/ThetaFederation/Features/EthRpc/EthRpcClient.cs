@@ -327,7 +327,7 @@ namespace Beamable.Microservices.ThetaFederation.Features.EthRpc
 		}
 	}
 
-	private async Task<TransactionReceipt> FetchReceiptAsync(string? transactionHash)
+	public async Task<TransactionReceipt> FetchReceiptAsync(string? transactionHash)
 	{
 		using (new Measure("FetchReceiptAsync"))
 		{

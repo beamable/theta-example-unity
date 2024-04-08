@@ -1,11 +1,14 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Beamable.Common;
+using Beamable.Common.Scheduler;
 using Beamable.Microservices.ThetaFederation.Features.Contracts;
 using Beamable.Microservices.ThetaFederation.Features.Contracts.Functions.Minting.Models;
 using Beamable.Microservices.ThetaFederation.Features.Minting.Storage;
 using Beamable.Microservices.ThetaFederation.Features.Minting.Storage.Models;
+using Beamable.Server;
 
 namespace Beamable.Microservices.ThetaFederation.Features.Minting
 {
@@ -15,13 +18,15 @@ namespace Beamable.Microservices.ThetaFederation.Features.Minting
 	private readonly CounterCollection _counterCollection;
 	private readonly MetadataService _metadataService;
 	private readonly MintCollection _mintCollection;
+	private readonly BeamScheduler _beamScheduler;
 
-	public MintingService(MetadataService metadataService, MintCollection mintCollection, CounterCollection counterCollection, ContractProxy contractProxy)
+	public MintingService(MetadataService metadataService, MintCollection mintCollection, CounterCollection counterCollection, ContractProxy contractProxy, BeamScheduler beamScheduler)
 	{
 		_metadataService = metadataService;
 		_mintCollection = mintCollection;
 		_counterCollection = counterCollection;
 		_contractProxy = contractProxy;
+		_beamScheduler = beamScheduler;
 	}
 
 	public async Task Mint(string toAddress, IList<MintRequest> requests)
@@ -84,6 +89,12 @@ namespace Beamable.Microservices.ThetaFederation.Features.Minting
 
 		var transactionHash = await _contractProxy.BatchMint(functionMessage);
 		mints.ForEach(x => x.TransactionHash = transactionHash);
+		await _beamScheduler.Schedule()
+			.Microservice<ThetaFederation>()
+			.Run(s => s.ProcessTransaction, transactionHash)
+			.WithRetryPolicy(new RetryPolicy { maxRetryCount = 5, retryDelayMs = 2000, useExponentialBackoff = true })
+			.After(TimeSpan.FromSeconds(2))
+			.Save(transactionHash);
 		await InsertMints(mints);
 	}
 

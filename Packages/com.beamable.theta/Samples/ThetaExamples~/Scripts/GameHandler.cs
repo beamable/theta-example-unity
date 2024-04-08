@@ -85,6 +85,6 @@ public class GameHandler : MonoBehaviour
     private void SyncInventory(InventoryView inventory)
     {
         uiInventoryCoins.text = inventory.currencies.Sum(c => c.Value).ToString();
-        uiInventoryNft.text = inventory.items.Count.ToString();
+        uiInventoryNft.text = inventory.items.Sum(kvp => kvp.Value.Count).ToString();
     }
 }

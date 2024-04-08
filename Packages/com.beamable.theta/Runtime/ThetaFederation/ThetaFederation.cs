@@ -7,6 +7,7 @@ using Beamable.Microservices.ThetaFederation.Endpoints;
 using Beamable.Microservices.ThetaFederation.Extensions;
 using Beamable.Microservices.ThetaFederation.Features.Accounts;
 using Beamable.Microservices.ThetaFederation.Features.Contracts;
+using Beamable.Microservices.ThetaFederation.Features.Minting;
 using Beamable.Microservices.ThetaFederation.Features.Transactions;
 using Beamable.Theta.Common;
 using Beamable.Server;
@@ -110,6 +111,12 @@ namespace Beamable.Microservices.ThetaFederation
             await endpoint.ValidateRequest(id, transaction, currencies, newItems, deleteItems, updateItems);
             return await endpoint
                 .StartInventoryTransaction(id, transaction, currencies, newItems, deleteItems, updateItems);
+        }
+
+        [ServerCallable]
+        public async Promise ProcessTransaction(string transactionHash)
+        {
+            await Provider.GetService<MintScheduler>().ProcessTransaction(transactionHash);
         }
     }
 }

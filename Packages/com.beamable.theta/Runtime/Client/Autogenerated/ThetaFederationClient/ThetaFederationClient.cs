@@ -60,10 +60,27 @@ namespace Beamable.Server.Clients
             System.Collections.Generic.Dictionary<string, object> serializedFields = new System.Collections.Generic.Dictionary<string, object>();
             return this.Request<string>("ThetaFederation", "GetDefaultContract", serializedFields);
         }
+        
+        /// <summary>
+        /// Call the ProcessTransaction method on the ThetaFederation microservice
+        /// <see cref="Beamable.Microservices.ThetaFederation.ThetaFederation.ProcessTransaction"/>
+        /// </summary>
+        public Beamable.Common.Promise<Beamable.Common.Unit> ProcessTransaction(string transactionHash)
+        {
+            object raw_transactionHash = transactionHash;
+            System.Collections.Generic.Dictionary<string, object> serializedFields = new System.Collections.Generic.Dictionary<string, object>();
+            serializedFields.Add("transactionHash", raw_transactionHash);
+            return this.Request<Beamable.Common.Unit>("ThetaFederation", "ProcessTransaction", serializedFields);
+        }
     }
     
     internal sealed class MicroserviceParametersThetaFederationClient
     {
+        
+        [System.SerializableAttribute()]
+        internal sealed class ParameterSystem_String : MicroserviceClientDataWrapper<string>
+        {
+        }
     }
     
     [BeamContextSystemAttribute()]
