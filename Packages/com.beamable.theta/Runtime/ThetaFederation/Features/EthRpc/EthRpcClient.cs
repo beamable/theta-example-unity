@@ -327,7 +327,7 @@ namespace Beamable.Microservices.ThetaFederation.Features.EthRpc
 		}
 	}
 
-	public async Task<TransactionReceipt> FetchReceiptAsync(string? transactionHash)
+	private async Task<TransactionReceipt> FetchReceiptAsync(string? transactionHash)
 	{
 		using (new Measure("FetchReceiptAsync"))
 		{
@@ -340,6 +340,27 @@ namespace Beamable.Microservices.ThetaFederation.Features.EthRpc
 				tokenSource.Token.ThrowIfCancellationRequested();
 				await Task.Delay(Configuration.ReceiptPoolIntervalMs, tokenSource.Token);
 				receipt = await RunWithRetry(_ => web3Client.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash), "GetTransactionReceipt");
+			}
+
+			return receipt;
+		}
+	}
+
+	public async Task<TransactionReceipt> FetchTransactionReceiptAsync(string? transactionHash)
+	{
+		using (new Measure("FetchTransactionReceiptAsync"))
+		{
+			var web3Client = await GetClient();
+			var receipt = await web3Client.Eth.Transactions.GetTransactionReceipt.SendRequestAsync(transactionHash);
+
+			if (receipt == null)
+			{
+				BeamableLogger.Log("Receipt is null");
+				throw new TransactionReceiptException($"Transaction {transactionHash} receipt failed.");
+			}
+			else
+			{
+				BeamableLogger.Log($"Receipt is {receipt.Succeeded()}");
 			}
 
 			return receipt;

@@ -21,9 +21,9 @@ namespace Beamable.Microservices.ThetaFederation.Features.Contracts
             return await _ethRpcClient.SendTransactionAsync((await GetDefaultContract()).PublicKey, request, waitForReceipt);
         }
 
-        public async Task<TransactionReceipt> FetchReceiptAsync(string? transactionHash)
+        public async Task<TransactionReceipt> FetchTransactionReceiptAsync(string? transactionHash)
         {
-            return await _ethRpcClient.FetchReceiptAsync(transactionHash);
+            return await _ethRpcClient.FetchTransactionReceiptAsync(transactionHash);
         }
     }
 }

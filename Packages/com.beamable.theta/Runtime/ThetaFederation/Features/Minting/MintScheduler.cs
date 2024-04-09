@@ -38,7 +38,7 @@ namespace Beamable.Microservices.ThetaFederation.Features.Minting
             try
             {
                 var transactionLog = await _transactionLogCollection.GetByChainTransactionHash(transactionHash);
-                var receipt = await _contractProxy.FetchReceiptAsync(transactionHash);
+                var receipt = await _contractProxy.FetchTransactionReceiptAsync(transactionHash);
                 if (receipt.Succeeded())
                 {
                     if (transactionLog is not null)

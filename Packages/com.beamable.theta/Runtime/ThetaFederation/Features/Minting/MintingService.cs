@@ -92,8 +92,8 @@ namespace Beamable.Microservices.ThetaFederation.Features.Minting
 		await _beamScheduler.Schedule()
 			.Microservice<ThetaFederation>()
 			.Run(s => s.ProcessTransaction, transactionHash)
-			.WithRetryPolicy(new RetryPolicy { maxRetryCount = 5, retryDelayMs = 2000, useExponentialBackoff = true })
-			.After(TimeSpan.FromSeconds(2))
+			.WithRetryPolicy(new RetryPolicy { maxRetryCount = 100, retryDelayMs = 500, useExponentialBackoff = false })
+			.After(TimeSpan.FromSeconds(1))
 			.Save(transactionHash);
 		await InsertMints(mints);
 	}
