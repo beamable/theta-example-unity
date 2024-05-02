@@ -44,7 +44,7 @@ and add a part of this repository as an external package.
 In the Unity Package Manager, [add a package via git-link](https://docs.unity3d.com/Manual/upm-ui-giturl.html).
 for `com.beamable.theta` and use the following git-link.
 ```shell
-https://github.com/beamable/theta-example-unity.git?path=/Packages/com.beamable.theta#0.0.5
+https://github.com/beamable/theta-example-unity.git?path=/Packages/com.beamable.theta#0.0.6
 ```
 
 Note: the end of the link includes the version number. You view the available versions by looking
